@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FootballLeague</string>
+    <string name="empty_data">No data found</string>
+
 </resources>
