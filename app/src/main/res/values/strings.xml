@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">FootballLeague</string>
+    <string name="football_league">Football League</string>
     <string name="empty_data">No data found</string>
+    <string name="emblem">Emblem</string>
+    <string name="internal_error">An error has occurred</string>
 
 </resources>

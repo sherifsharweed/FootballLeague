@@ -34,9 +34,14 @@ object Network {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
+        // Load the SSL certificate from the assets folder if it exists
+        /* val certificatePin = CertificatePinner.Builder()
+             .add(serverHostname, "sha256/your_certificate_hash")
+             .build()*/
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         builder.addInterceptor(httpLoggingInterceptor)
+        //.certificatePinner(certificatePinner)
         return builder.build()
     }
 }

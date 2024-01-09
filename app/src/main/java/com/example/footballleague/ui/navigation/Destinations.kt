@@ -1,13 +1,9 @@
 package com.example.footballleague.ui.navigation
 
-interface FootballDestination {
-    val route: String
-}
 
-object AllMatches : FootballDestination {
-    override val route = "all_matches"
-}
+sealed class Screens(val route: String) {
 
-object SingleMatch : FootballDestination {
-    override val route = "single_match"
+    object AllMatches : Screens("all_matches")
+
+    object SingleMatch : Screens("single_match")
 }
