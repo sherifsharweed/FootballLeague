@@ -1,5 +1,8 @@
 package com.example.footballleague.di
 
+import com.example.footballleague.data.local.CompetitionsLocalData
+import com.example.footballleague.data.local.CompetitionsLocalDataSource
+import com.example.footballleague.data.local.dao.AppDataBase
 import com.example.footballleague.data.remote.CompetitionsRemoteData
 import com.example.footballleague.data.remote.CompetitionsRemoteDataSource
 import com.example.footballleague.data.remote.api.CompetitionApiService
@@ -16,5 +19,12 @@ object DataSource {
         reposApiService: CompetitionApiService,
     ): CompetitionsRemoteDataSource {
         return CompetitionsRemoteData(reposApiService)
+    }
+
+    @Provides
+    fun provideCompetitionLocalDataSource(
+        appDataBase: AppDataBase,
+    ): CompetitionsLocalDataSource {
+        return CompetitionsLocalData(appDataBase)
     }
 }

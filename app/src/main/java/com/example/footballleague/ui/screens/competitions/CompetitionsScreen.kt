@@ -38,7 +38,7 @@ fun AllMatchesScreen(
                 when (it.status) {
                     Status.LOADING -> LoadingBar()
                     Status.SUCCESS -> CompetitionList(it.data)
-                    Status.FAILURE -> ShowToast(message = stringResource(R.string.internal_error))
+                    Status.FAILURE -> ShowToast(it.message)
                 }
             }
         }

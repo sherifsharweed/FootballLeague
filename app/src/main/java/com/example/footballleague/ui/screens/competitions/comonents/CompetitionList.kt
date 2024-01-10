@@ -21,16 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.footballleague.R
-import com.example.footballleague.data.models.CompetitionResponse
-import com.example.footballleague.data.models.Competitions
+import com.example.footballleague.data.models.CompetitionDetails
 import com.example.footballleague.ui.theme.MainTextStyle
 
 @Composable
-fun CompetitionList(data: CompetitionResponse?) {
-    if (data?.competitions?.isNotEmpty() == true) {
+fun CompetitionList(data: List<CompetitionDetails>?) {
+    if (data?.isNotEmpty() == true) {
         LazyColumn(modifier = Modifier.padding(top = 4.dp)) {
-            items(data.competitions.size) { index ->
-                CompetitionListItem(data.competitions[index]) {}
+            items(data.size) { index ->
+                CompetitionListItem(data[index]) {}
                 Divider(Modifier.padding(vertical = 8.dp))
             }
         }
@@ -46,7 +45,7 @@ fun CompetitionList(data: CompetitionResponse?) {
 }
 
 @Composable
-fun CompetitionListItem(competitions: Competitions, onItemSelect: () -> Unit) {
+fun CompetitionListItem(competition: CompetitionDetails, onItemSelect: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -58,7 +57,7 @@ fun CompetitionListItem(competitions: Competitions, onItemSelect: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Text(
-                text = competitions.name!!,
+                text = competition.name!!,
                 maxLines = 1,
                 style = MainTextStyle
             )
@@ -66,15 +65,15 @@ fun CompetitionListItem(competitions: Competitions, onItemSelect: () -> Unit) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = competitions.area?.name ?: "",
+                    text = competition.areaName ?: "",
                     maxLines = 1,
                     style = MaterialTheme.typography.bodySmall
                 )
                 Spacer(modifier = Modifier.width(5.dp))
-                DrawUrlImage(competitions.area?.flag, Modifier.size(15.dp, 10.dp))
+                DrawUrlImage(competition.areaFlag, Modifier.size(15.dp, 10.dp))
             }
         }
         Spacer(Modifier.weight(1f))
-        DrawUrlImage(competitions.emblem, Modifier.size(30.dp))
+        DrawUrlImage(competition.emblem, Modifier.size(30.dp))
     }
 }

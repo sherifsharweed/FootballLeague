@@ -1,5 +1,6 @@
 package com.example.footballleague.di
 
+import com.example.footballleague.data.local.CompetitionsLocalDataSource
 import com.example.footballleague.data.remote.CompetitionsRemoteDataSource
 import com.example.footballleague.data.repos.competitions.CompetitionsRepo
 import com.example.footballleague.data.repos.competitions.CompetitionsRepoImpl
@@ -14,7 +15,8 @@ object Repos {
     @Provides
     fun provideCompetitionRepo(
         remoteDataSource: CompetitionsRemoteDataSource,
+        localDataSource: CompetitionsLocalDataSource
     ): CompetitionsRepo {
-        return CompetitionsRepoImpl(remoteDataSource)
+        return CompetitionsRepoImpl(remoteDataSource , localDataSource)
     }
 }

@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.footballleague.data.DataStatus
-import com.example.footballleague.data.models.CompetitionResponse
+import com.example.footballleague.data.models.CompetitionDetails
 import com.example.footballleague.data.repos.competitions.CompetitionsRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CompetitionsViewModel @Inject constructor(private val competitionsRepo: CompetitionsRepo) :
     ViewModel() {
-    val screenState = mutableStateOf<DataStatus<CompetitionResponse>>(DataStatus.loading())
+    val screenState = mutableStateOf<DataStatus<List<CompetitionDetails>>>(DataStatus.loading())
 
     init {
         getAllCompetitions()
