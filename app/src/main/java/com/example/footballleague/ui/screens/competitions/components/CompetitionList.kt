@@ -1,4 +1,4 @@
-package com.example.footballleague.ui.screens.competitions.comonents
+package com.example.footballleague.ui.screens.competitions.components
 
 
 import androidx.compose.foundation.clickable
@@ -25,11 +25,11 @@ import com.example.footballleague.data.models.CompetitionDetails
 import com.example.footballleague.ui.theme.MainTextStyle
 
 @Composable
-fun CompetitionList(data: List<CompetitionDetails>?) {
+fun CompetitionList(data: List<CompetitionDetails>?, onItemSelect: (CompetitionDetails) -> Unit) {
     if (data?.isNotEmpty() == true) {
         LazyColumn(modifier = Modifier.padding(top = 4.dp)) {
             items(data.size) { index ->
-                CompetitionListItem(data[index]) {}
+                CompetitionListItem(data[index], onItemSelect)
                 Divider(Modifier.padding(vertical = 8.dp))
             }
         }
@@ -45,13 +45,16 @@ fun CompetitionList(data: List<CompetitionDetails>?) {
 }
 
 @Composable
-fun CompetitionListItem(competition: CompetitionDetails, onItemSelect: () -> Unit) {
+fun CompetitionListItem(
+    competition: CompetitionDetails,
+    onItemSelect: (CompetitionDetails) -> Unit
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp)
-            .clickable(onClick = { }),
+            .clickable(onClick = { onItemSelect(competition) }),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp)

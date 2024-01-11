@@ -1,4 +1,4 @@
-package com.example.footballleague.ui.screens.competitions.comonents
+package com.example.footballleague.ui.screens.competitions.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,7 +20,7 @@ fun DrawUrlImage(url: String?, modifier: Modifier) {
                 .decoderFactory(SvgDecoder.Factory())
                 .build(),
             contentDescription = stringResource(R.string.emblem),
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Fit,
             modifier = modifier
         )
     }

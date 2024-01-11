@@ -14,15 +14,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.footballleague.R
 import com.example.footballleague.data.Status
+import com.example.footballleague.data.models.CompetitionDetails
 import com.example.footballleague.ui.components.LoadingBar
 import com.example.footballleague.ui.components.ShowToast
-import com.example.footballleague.ui.screens.competitions.comonents.CompetitionList
+import com.example.footballleague.ui.screens.competitions.components.CompetitionList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AllMatchesScreen(
     competitionsViewModel: CompetitionsViewModel = hiltViewModel(),
-    onClickSingleMatch: () -> Unit = {},
+    onClickSingleMatch: (CompetitionDetails) -> Unit = {},
 ) {
     Scaffold(topBar = {
         CenterAlignedTopAppBar(
@@ -37,7 +38,7 @@ fun AllMatchesScreen(
             competitionsViewModel.screenState.value.let {
                 when (it.status) {
                     Status.LOADING -> LoadingBar()
-                    Status.SUCCESS -> CompetitionList(it.data)
+                    Status.SUCCESS -> CompetitionList(it.data,onClickSingleMatch)
                     Status.FAILURE -> ShowToast(it.message)
                 }
             }
